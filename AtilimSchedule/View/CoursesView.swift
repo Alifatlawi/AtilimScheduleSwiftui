@@ -41,7 +41,7 @@ struct CoursesView: View {
                         }
                     }
                 })
-            }
+            }//test
         }
         .onAppear {
             dataClassifier.getData()
