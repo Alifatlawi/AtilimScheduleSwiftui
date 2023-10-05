@@ -1,25 +1,58 @@
-//
-//  NewScheduleView.swift
-//  AtilimSchedule
-//
-//  Created by Tacettin Pekin on 6.10.2023.
-//
-
 import SwiftUI
 import CoreData
 
-
-
 struct ScheduleView: View {
     @Environment(\.managedObjectContext) var moc
+    @State private var selectedDay: String = "Monday"  // Default to Monday
     
     var body: some View {
+//        let screenSize = UIScreen.main.bounds.size
         VStack {
-            DaySelectionView(selectedDay: .constant("Pazartesi"))  // Placeholder
+            Text(formattedDate)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(Color.blue)
+                .padding(.top)
+            
+            DaySelectionView(selectedDay: $selectedDay)
+                .padding(.vertical)
+            
             HeaderRow()
-            CourseListView()
+                .background(Color.gray.opacity(0.1))
+                
+            
+            CourseListView(selectedDay: selectedDay)
         }
-        .padding()
+        .padding(.horizontal)
+//        .padding(.bottom, screenSize.height * 0.08)
+    }
+    
+    var formattedDate: String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: date)
+    }
+}
+
+struct DaySelectionView: View {
+    let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    @Binding var selectedDay: String
+    
+    var body: some View {
+        HStack {
+            ForEach(days, id: \.self) { day in
+                Text(String(day.prefix(3)))
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 15)
+                    .background(self.selectedDay == day ? Color.blue : Color.gray.opacity(0.2))
+                    .foregroundColor(self.selectedDay == day ? Color.white : Color.blue)
+                    .cornerRadius(8)
+                    .onTapGesture {
+                        self.selectedDay = day
+                    }
+            }
+        }
     }
 }
 
@@ -33,24 +66,35 @@ struct HeaderRow: View {
                 .fontWeight(.medium)
             Spacer()
         }
+        .padding(.horizontal, 30)
         .foregroundColor(Color.gray)
+        .cornerRadius(10)
     }
 }
 
 struct CourseListView: View {
+    var selectedDay: String
     @FetchRequest(
         entity: CourseEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \CourseEntity.name, ascending: true)]
     ) var courses: FetchedResults<CourseEntity>
     
+    var filteredSchedules: [ScheduleEntity] {
+        let allSections = courses.flatMap { course in
+            course.sections?.allObjects as? [SectionEntity] ?? []
+        }
+        let allSchedules = allSections.flatMap { section in
+            section.schedules?.allObjects as? [ScheduleEntity] ?? []
+        }
+        return allSchedules.filter { $0.day == selectedDay }
+    }
+    
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                ForEach(courses, id: \.id) { course in
-                    ForEach(course.sections?.allObjects as? [SectionEntity] ?? [], id: \.id) { section in
-                        ForEach(section.schedules?.allObjects as? [ScheduleEntity] ?? [], id: \.startTime) { schedule in
-                            CourseRowView(course: course, section: section, schedule: schedule)
-                        }
+                ForEach(filteredSchedules, id: \.startTime) { schedule in
+                    if let course = schedule.section?.course, let section = schedule.section {
+                        CourseRowView(course: course, section: section, schedule: schedule)
                     }
                 }
             }
@@ -63,54 +107,82 @@ struct CourseRowView: View {
     var section: SectionEntity
     var schedule: ScheduleEntity
     
-    var body: some View {
-        HStack {
-            VStack {
-                Text(schedule.startTime ?? "")
-                Text(schedule.endTime ?? "")
-            }
-            Divider()
-            VStack(alignment: .leading) {
-                Text(course.name ?? "")
-                    .fontWeight(.semibold)
-                Text(course.id ?? "")
-                    .fontWeight(.semibold)
-                Text("Section: \(section.id ?? "")")
-                    .fontWeight(.semibold)
-                Text("Teacher: \(section.teacher?.name ?? "")")
-                    .fontWeight(.semibold)
-            }
-        }
-        .padding()
-        .background(Color.gray.opacity(0.2))
-        .cornerRadius(10)
+    var color: Color {
+        // Assuming you have a property 'courseColor' in CourseEntity
+        Color(hex: course.color ?? "#000000")
     }
-}
-
-struct DaySelectionView: View {
-    let days = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"]
-    @Binding var selectedDay: String?
     
     var body: some View {
-        HStack {
-            ForEach(days, id: \.self) { day in  // Modified line
-                Text(String(day.prefix(2)))  // Modified line
-                    .padding()
-                    .background(self.selectedDay == day ? Color.blue : Color.gray.opacity(0.2))  // Modified line
-                    .foregroundColor(self.selectedDay == day ? Color.white : Color.blue)  // Modified line
-                    .cornerRadius(8)
-                    .onTapGesture {
-                        self.selectedDay = day  // Modified line
+        GeometryReader { geometry in
+            HStack {
+                Image(systemName: "clock")
+                VStack {
+                    Text(schedule.startTime ?? "")
+                    Text(schedule.endTime ?? "")
+                        .foregroundStyle(.secondary)
+                }
+                .padding(.trailing)
+                
+                Divider()
+                    .padding(.trailing)
+                
+                VStack(alignment: .leading) {
+                    Text(course.name ?? "")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                    Text(course.id ?? "")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                    Text("Sec - \(section.id ?? "")")
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                    HStack {
+                        // Assuming you have a property 'classroom' in ScheduleEntity
+                        Text("Class: \(schedule.classroom ?? "")")
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.white)
                     }
+                }
+                .padding()
+                .background(color)
+                .cornerRadius(12)
             }
+            
         }
+        .frame(height: 100)
+        .padding(.vertical)
+    }
+}
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (1, 1, 1, 0)
+        }
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
     }
 }
 
 
-
-
-
-#Preview {
-    ScheduleView()
+struct ScheduleView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScheduleView()
+    }
 }

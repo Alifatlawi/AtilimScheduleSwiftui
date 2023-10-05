@@ -7,10 +7,12 @@
 
 import Foundation
 
-class DataClassifierr: ObservableObject{
+class DataClassifier: ObservableObject{
     @Published var welcome: Welcome?
     @Published var courses: [Course] = []
+    @Published var isLoading = false
     func getData() {
+        isLoading = true
         let tdNum = "29"
         let domain = "https://atilimengr.edupage.org"
         
@@ -44,7 +46,9 @@ class DataClassifierr: ObservableObject{
                 DispatchQueue.main.async {
                     self.welcome = welcomeData
                     self.processData(welcomeData: welcomeData)
-                    self.printCourses(courses: self.courses)
+//                    self.printCourses(courses: self.courses)
+                    self.isLoading = false
+                    
                 }
             } catch {
                 print("Decoding failed: \(error)")
@@ -106,17 +110,17 @@ class DataClassifierr: ObservableObject{
                 let sectionID = String(subjectComponents[1]).trimmingCharacters(in: .whitespaces)
                 let name = subjectComponents.dropFirst(2).joined(separator: "-").trimmingCharacters(in: .whitespaces)
                 
-                var durationString: String?
-                if let startTimeString = periodRow.starttime, let endTimeString = periodRow.endtime {
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "HH:mm"
-                    if let startTime = dateFormatter.date(from: startTimeString), let endTime = dateFormatter.date(from: endTimeString) {
-                        let duration = endTime.timeIntervalSince(startTime)
-                        let durationInMinutes = Int(duration / 60)
-                        // Convert durationInMinutes to your desired format, e.g., "2 periods"
-                        durationString = "\(durationInMinutes) minutes"  // Adjust this line as needed
-                    }
-                }
+//                var durationString: String?
+//                if let startTimeString = periodRow.starttime, let endTimeString = periodRow.endtime {
+//                    let dateFormatter = DateFormatter()
+//                    dateFormatter.dateFormat = "HH:mm"
+//                    if let startTime = dateFormatter.date(from: startTimeString), let endTime = dateFormatter.date(from: endTimeString) {
+//                        let duration = endTime.timeIntervalSince(startTime)
+//                        let durationInMinutes = Int(duration / 60)
+//                        // Convert durationInMinutes to your desired format, e.g., "2 periods"
+//                        durationString = "\(durationInMinutes) minutes"  // Adjust this line as needed
+//                    }
+//                }
                 
                 var dayName: String?
                 if let daysEncoded = card.days {
@@ -158,13 +162,13 @@ class DataClassifierr: ObservableObject{
                         course.sections[index].schedules.append(schedule)
                     } else {
                         // Section does not exist, create and append new section
-                        let newSection = Section(id: sectionID, teacher: teacher, schedules: [schedule])
+                        let newSection = Sections(id: sectionID, teacher: teacher, schedules: [schedule])
                         course.sections.append(newSection)
                     }
                     coursesDictionary[courseKey] = course  // update the course in the dictionary
                 } else {
                     // Course does not exist, create new course and section
-                    let section = Section(id: sectionID, teacher: teacher, schedules: [schedule])
+                    let section = Sections(id: sectionID, teacher: teacher, schedules: [schedule])
                     let course = Course(id: id, name: name, sections: [section])
                     coursesDictionary[courseKey] = course  // add the new course to the dictionary
                 }

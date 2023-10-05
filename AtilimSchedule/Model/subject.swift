@@ -1,22 +1,22 @@
 import Foundation
 
-struct Course {
+struct Course : Identifiable{
     var id: String  // e.g., "CMPE251"
     var name: String  // e.g., "Discrete Computational Structures"
-    var sections: [Section]
+    var sections: [Sections]
 }
 
-struct Section {
+struct Sections : Identifiable{
     var id: String  // e.g., "01", "02", "03", etc.
     var teacher: Teacher
     var schedules: [Schedule]
 }
 
-struct Teacher {
+struct Teacher{
     var name: String  // e.g., "Güzin Türkmen", "Erhan Gokcay"
 }
 
-struct Schedule {
+struct Schedule{
     var day: String  // e.g., "Salı", "Pazartesi"
     var classroom: String  // e.g., "2017H", "2015H"
     var period: String  // e.g., "4.", "5."

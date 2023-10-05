@@ -12,6 +12,7 @@ struct MainView: View {
     
     @State private var isAddExamViewPresented: Bool = false
     @State private var isShowExamViewPresented: Bool = false
+    @State private var isShowCoursesViewPresented: Bool = false
     
     var body: some View {
         let screenSize = UIScreen.main.bounds.size
@@ -43,14 +44,17 @@ struct MainView: View {
                         VStack(spacing: 20) {
                             HStack(spacing: 20) {
                                 
-                                NavigationLink {
-                                    SelectAddCourseType()
+                                Button {
+                                    isShowCoursesViewPresented.toggle()
                                 } label: {
                                     ActionCard(title: "Add Courses", icon: "book.fill", bgColor: .blue, image: "study1")
                                 }
+                                .sheet(isPresented: $isShowCoursesViewPresented, content: {
+                                    CoursesView()
+                                })
                                 
                                 NavigationLink {
-                                    EditCourseView()
+                                    EditCoursesView()
                                 } label: {
                                     ActionCard(title: "Edit Courses", icon: "pencil.circle.fill", bgColor: .green, image:"addcourse1")
                                 }
@@ -67,7 +71,7 @@ struct MainView: View {
                                     ActionCard(title: "Add Exams", icon: "calendar.badge.plus", bgColor: .orange, image: "exam")
                                 }
                                 .sheet(isPresented: $isAddExamViewPresented) {
-                                    AddExamView()  // Your AddCourseView is presented as a sheet
+                                    AddExamView() 
                                 }
                                 
                                 Button {

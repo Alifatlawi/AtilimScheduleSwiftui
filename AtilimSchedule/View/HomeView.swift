@@ -29,6 +29,7 @@ struct HomeView: View {
                             MainView()
                         case .calendar:
                             ScheduleView()
+                            Text("test")
                         case .gearshape:
                             SettingView()
                         case .link:
@@ -57,8 +58,8 @@ struct HomeView: View {
 
 
 
-let sampleCourses = [
-    Courses(startTime: "9:30", endTime: "10:20",title: "Computer programming", section: "3", location: "B1010", code: "CMPE113", bgColor: .green),
-    // ... other courses ...
-]
-let sampleSchedule = ["Mon": sampleCourses, /* ... other days ... */]
+//let sampleCourses = [
+//    Courses(startTime: "9:30", endTime: "10:20",title: "Computer programming", section: "3", location: "B1010", code: "CMPE113", bgColor: .green),
+//    // ... other courses ...
+//]
+//let sampleSchedule = ["Mon": sampleCourses, /* ... other days ... */]
