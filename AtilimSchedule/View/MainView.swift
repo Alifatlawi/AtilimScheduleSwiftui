@@ -84,6 +84,7 @@ struct MainView: View {
                                     ExamDatesView()
                                 })
                                 
+                                
                             }
                             .padding(.top, 60)
                         }
