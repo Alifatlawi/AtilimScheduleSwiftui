@@ -86,13 +86,31 @@ struct CourseListView: View {
         let allSchedules = allSections.flatMap { section in
             section.schedules?.allObjects as? [ScheduleEntity] ?? []
         }
-        return allSchedules.filter { $0.day == selectedDay }
+        let schedulesForSelectedDay = allSchedules.filter { $0.day == selectedDay }
+        
+        return schedulesForSelectedDay.sorted {
+            guard let startTime1 = $0.startTime, let startTime2 = $1.startTime else {
+                return false
+            }
+            let timeComponents1 = startTime1.split(separator: ":").compactMap { Int($0) }
+            let timeComponents2 = startTime2.split(separator: ":").compactMap { Int($0) }
+            
+            guard timeComponents1.count == 2, timeComponents2.count == 2 else {
+                return false
+            }
+            
+            if timeComponents1[0] != timeComponents2[0] {
+                return timeComponents1[0] < timeComponents2[0]
+            } else {
+                return timeComponents1[1] < timeComponents2[1]
+            }
+        }
     }
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                ForEach(filteredSchedules, id: \.startTime) { schedule in
+                ForEach(filteredSchedules, id: \.self) { schedule in  // Changed id to \.self for uniqueness
                     if let course = schedule.section?.course, let section = schedule.section {
                         CourseRowView(course: course, section: section, schedule: schedule)
                     }
@@ -101,6 +119,7 @@ struct CourseListView: View {
         }
     }
 }
+
 
 struct CourseRowView: View {
     var course: CourseEntity

@@ -140,18 +140,18 @@ class DataClassifier: ObservableObject{
                     dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                     dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
-                    print("Start Time String: \(periodRow.starttime ?? "Nil")") // Debug print
+//                    print("Start Time String: \(periodRow.starttime ?? "Nil")") // Debug print
                     if let startTimeDate = dateFormatter.date(from: periodRow.starttime ?? "") {
-                        print("Start Time Date: \(startTimeDate)") // Debug print
+//                        print("Start Time Date: \(startTimeDate)") // Debug print
                         if let endTimeDate = Calendar.current.date(byAdding: .minute, value: totalDurationInMinutes, to: startTimeDate) {
-                            print("End Time Date: \(endTimeDate)") // Debug print
+//                            print("End Time Date: \(endTimeDate)") // Debug print
                             endTimeString = dateFormatter.string(from: endTimeDate)
-                            print("End Time String: \(endTimeString ?? "Nil")") // Debug print
+//                            print("End Time String: \(endTimeString ?? "Nil")") // Debug print
                         } else {
-                            print("Failed to calculate end time date") // Debug print for failure case
+//                            print("Failed to calculate end time date") // Debug print for failure case
                         }
                     } else {
-                        print("Failed to convert start time string to date") // Debug print for failure case
+//                        print("Failed to convert start time string to date") // Debug print for failure case
                     }
                 }
 

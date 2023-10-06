@@ -29,6 +29,9 @@
 		416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E701E2ACF4D1F007FA2CA /* ContentView.swift */; };
 		416E70212ACF4D20007FA2CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416E70202ACF4D20007FA2CA /* Assets.xcassets */; };
 		416E70242ACF4D20007FA2CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416E70232ACF4D20007FA2CA /* Preview Assets.xcassets */; };
+		416E702B2AD00D8F007FA2CA /* MakeScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */; };
+		416E702D2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E702C2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift */; };
+		416E702F2AD01309007FA2CA /* ScheduleResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E702E2AD01309007FA2CA /* ScheduleResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		416E701E2ACF4D1F007FA2CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		416E70202ACF4D20007FA2CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		416E70232ACF4D20007FA2CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeScheduleView.swift; sourceTree = "<group>"; };
+		416E702C2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGeneratorViewModel.swift; sourceTree = "<group>"; };
+		416E702E2AD01309007FA2CA /* ScheduleResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				147DAD332ACF51E700D676F0 /* Data.swift */,
+				416E702C2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -99,6 +106,8 @@
 				147DAD432ACF7AE400D676F0 /* AddExamView.swift */,
 				147DAD452ACF7B2900D676F0 /* ExamDatesView.swift */,
 				147DAD472ACF7B9600D676F0 /* SettingView.swift */,
+				416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */,
+				416E702E2AD01309007FA2CA /* ScheduleResultView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,7 +250,10 @@
 				147DAD422ACF6A6400D676F0 /* EditCoursesView.swift in Sources */,
 				147DAD302ACF515200D676F0 /* subject.swift in Sources */,
 				147DAD3E2ACF5C6D00D676F0 /* DatabaseController.swift in Sources */,
+				416E702F2AD01309007FA2CA /* ScheduleResultView.swift in Sources */,
+				416E702D2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift in Sources */,
 				147DAD342ACF51E700D676F0 /* Data.swift in Sources */,
+				416E702B2AD00D8F007FA2CA /* MakeScheduleView.swift in Sources */,
 				147DAD442ACF7AE400D676F0 /* AddExamView.swift in Sources */,
 				147DAD2E2ACF50C500D676F0 /* LinkView.swift in Sources */,
 				147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */,

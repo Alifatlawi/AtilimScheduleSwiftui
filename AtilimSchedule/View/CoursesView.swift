@@ -22,7 +22,7 @@ struct CoursesView: View {
     var body: some View {
         NavigationView {
             if dataClassifier.isLoading {
-                ProgressView()  // Display loading indicator while data is being loaded
+                ProgressView()
                     .progressViewStyle(CircularProgressViewStyle())
                     .scaleEffect(2)
             } else {
@@ -48,13 +48,6 @@ struct CoursesView: View {
         }
     }
 }
-
-struct CoursesView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoursesView()
-    }
-}
-
 
 #Preview {
     CoursesView()
