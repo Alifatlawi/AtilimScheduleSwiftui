@@ -136,13 +136,25 @@ class DataClassifier: ObservableObject{
                     let breakBetweenPeriods = 10
                     let totalDurationInMinutes = (durationPeriods * lengthOfPeriod) + ((durationPeriods - 1) * breakBetweenPeriods)
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "HH:mm"
+                    dateFormatter.dateFormat = "HH:mm" // Adjust this format as needed
+                    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+
+                    print("Start Time String: \(periodRow.starttime ?? "Nil")") // Debug print
                     if let startTimeDate = dateFormatter.date(from: periodRow.starttime ?? "") {
+                        print("Start Time Date: \(startTimeDate)") // Debug print
                         if let endTimeDate = Calendar.current.date(byAdding: .minute, value: totalDurationInMinutes, to: startTimeDate) {
+                            print("End Time Date: \(endTimeDate)") // Debug print
                             endTimeString = dateFormatter.string(from: endTimeDate)
+                            print("End Time String: \(endTimeString ?? "Nil")") // Debug print
+                        } else {
+                            print("Failed to calculate end time date") // Debug print for failure case
                         }
+                    } else {
+                        print("Failed to convert start time string to date") // Debug print for failure case
                     }
                 }
+
                 
                 let teacher = Teacher(name: teacherName ?? "")
                 let schedule = Schedule(day: dayName ?? "",  // Make sure dayName is defined in your duration and day processing code
