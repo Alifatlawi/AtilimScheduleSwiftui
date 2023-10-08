@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct SelectCourseView: View {
+    @State private var selectedView = 0
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Picker("Select View", selection: $selectedView) {
+                    Text("Weekly").tag(0)
+                    Text("Daily").tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+                if selectedView == 0 {
+                    ScheduleResultView()
+                } else {
+                    ScheduleView()
+                }
+            }
+        }
     }
 }
 

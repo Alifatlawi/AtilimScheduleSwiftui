@@ -1,89 +1,157 @@
-//import SwiftUI
-//
-//struct ScheduleResultView: View {
-//    var schedules: [[Sections]]
-//    @State private var selectedScheduleIndex: Int = 0
-//
-//    var body: some View {
-//        NavigationView {
-//            VStack {
-//                Picker("Select Schedule", selection: $selectedScheduleIndex) {
-//                    ForEach(0..<schedules.count) { index in
-//                        Text("Schedule \(index + 1)").tag(index)
-//                    }
-//                }
-//                .pickerStyle(SegmentedPickerStyle())
-//
-//                ScrollView {
-//                    ForEach(daysOfWeek, id: \.self) { day in
-//                        DayView(day: day, sections: filterSectionsByDay(day: day, sections: schedules[selectedScheduleIndex]))
-//                    }
-//                }
-//            }
-//            .navigationTitle("Generated Schedules")
-//        }
-//    }
-//    
-//    // You would need to define your days of the week based on your schedule data
-//    var daysOfWeek: [String] {
-//        ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-//    }
-//    
-//    func filterSectionsByDay(day: String, sections: [Sections]) -> [Sections] {
-//        // Implement the actual filtering logic to return sections that match the given day
-//        // This is a simplified placeholder
-//        return sections.filter { section in
-//            section.schedules.contains { $0.day == day }
-//        }
+import SwiftUI
+import CoreData
+
+struct ScheduleResultView: View {
+    let days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+    let fullDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    let startHour = 9
+    let endHour = 18
+    
+    @FetchRequest(
+        entity: CourseEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \CourseEntity.name, ascending: true)]
+    ) var courses: FetchedResults<CourseEntity>
+    
+    var body: some View {
+        GeometryReader { geometry in
+            let width = geometry.size.width
+            let colWidth = width / CGFloat(days.count + 1)
+            let totalRows = (endHour - startHour) * 2 + 2
+            let rowHeight = (geometry.size.height * 1.8) / CGFloat(totalRows)
+            
+            HStack(spacing: 0) {
+                // Column for hour labels
+                VStack(alignment: .trailing, spacing: 0) {
+                    // Extra empty cell
+                    Text("")
+                        .frame(width: colWidth, height: rowHeight)
+                        .overlay(
+                            Rectangle()
+                                .strokeBorder(Color.primary, lineWidth: 0.2)  // Set the lineWidth to your desired border width
+                        )
+                    
+                    ForEach(startHour..<endHour, id: \.self) { hour in
+                        Text("\(hour):30")
+                            .frame(width: colWidth, height: rowHeight)
+                            .overlay(
+                                Rectangle()
+                                    .strokeBorder(Color.primary, lineWidth: 0.2)  // Set the lineWidth to your desired border width
+                            )
+                    }
+                }
+                
+                // Columns for each day
+                ForEach(days.indices, id: \.self) { index in
+                    VStack(spacing: 0) {
+                        Text(days[index])
+                            .frame(width: colWidth, height: rowHeight)
+                            .background(Color.gray.opacity(0.2))
+                            .overlay(
+                                Rectangle()
+                                    .strokeBorder(Color.primary, lineWidth: 0.2)  // Set the lineWidth to your desired border width
+                            )
+                        
+                        ForEach(startHour..<endHour, id: \.self) { hour in
+                            courseView(for: days[index], hour: hour, minute: 30)
+                                .frame(width: colWidth, height: rowHeight)
+                                .overlay(
+                                    Rectangle()
+                                        .strokeBorder(Color.primary, lineWidth: 0.2)  // Set the lineWidth to your desired border width
+                                )
+                        }
+                    }
+                }
+            }
+            .padding(.vertical)
+        }
+    }
+    
+    func courseView(for day: String, hour: Int, minute: Int) -> some View {
+        var color: Color {
+            // Assuming you have a property 'courseColor' in CourseEntity
+            Color(hex: courseInfo?.course.color ?? "#000000")
+        }
+        let courseInfo = schedule(for: day, hour: hour, minute: minute)
+        return AnyView(
+            ZStack {
+                Rectangle()
+                    .fill(courseInfo != nil ? color : Color.clear)
+                VStack {
+                    Text(courseInfo?.course.id ?? "")
+                        .font(.footnote)
+                    Text(courseInfo?.schedule.classroom ?? "")
+                        .font(.footnote)
+                }
+            }
+        )
+    }
+    
+    func schedule(for day: String, hour: Int, minute: Int) -> (course: CourseEntity, schedule: ScheduleEntity)? {
+        guard let dayIndex = days.firstIndex(of: day), dayIndex < fullDays.count else { return nil }
+        let fullDayName = fullDays[dayIndex]
+        
+        for course in courses {
+            for section in (course.sections?.allObjects as? [SectionEntity] ?? []) {
+                for schedule in (section.schedules?.allObjects as? [ScheduleEntity] ?? []) {
+                    if schedule.day == fullDayName && isTimeWithinSchedule(hour: hour, minute: minute, schedule: schedule) {
+                        return (course, schedule)
+                    }
+                }
+            }
+        }
+        return nil
+    }
+    
+    func isTimeWithinSchedule(hour: Int, minute: Int, schedule: ScheduleEntity) -> Bool {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        
+        guard let startTime = formatter.date(from: schedule.startTime ?? ""),
+              let endTime = formatter.date(from: schedule.endTime ?? "") else {
+            return false
+        }
+        
+        let currentDate = formatter.date(from: "\(hour):\(minute < 10 ? "0\(minute)" : "\(minute)")")
+        
+        return (startTime...endTime).contains(currentDate!)
+    }
+}
+
+
+extension Schedule {
+    var startsAtHour: Int {
+        let hourString = String(startTime.prefix(2))
+        return Int(hourString) ?? 0
+    }
+    
+    var durationInHalfHours: Int {
+        // Assuming startTime and endTime are in "HH:mm" format
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        guard let start = formatter.date(from: startTime),
+              let end = formatter.date(from: endTime) else {
+            return 0
+        }
+        let duration = end.timeIntervalSince(start)
+        return Int(duration / 1800)  // Convert seconds to half-hours
+    }
+}
+
+//struct ScheduleResultView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Provide some dummy data for the preview
+//        let dummySchedule = Schedule(day: "Mon", classroom: "2017H", period: "4.", startTime: "09:30", endTime: "10:20", duration: "2 period(s)")
+//        let dummyTeacher = Teacher(name: "Güzin Türkmen")
+//        let dummySection = Sections(id: "01", teacher: dummyTeacher, schedules: [dummySchedule])
+//        let dummyCourse = Course(id: "CMPE251", name: "Discrete Computational Structures", sections: [dummySection])
+//        return ScheduleResultView(courses: [dummyCourse])
 //    }
 //}
-//
-//struct DayView: View {
-//    var day: String
-//    var sections: [Sections]
-//    
-//    var body: some View {
-//        VStack {
-//            Text(day).font(.headline)
-//            
-//            ForEach(sortedSections, id: \.id) { section in
-//                SectionCardView(section: section)
-//            }
-//        }
-//    }
-//    
-//    var sortedSections: [Sections] {
-//        sections.sorted { $0.schedules.first! < $1.schedules.first! }
-//    }
-//}
-//
-//struct SectionCardView: View {
-//    var section: Sections
-//    
-//    var body: some View {
-//        VStack {
-//            Text("\(section.id) - \(section.teacher.name)")
-//            // Add more details about the section as needed
-//        }
-//        .padding()
-//        .background(Color.blue)
-//        .cornerRadius(8)
-//        .foregroundColor(.white)
-//    }
-//}
-//
-//
-//extension Schedule: Comparable {
-//    static func < (lhs: Schedule, rhs: Schedule) -> Bool {
-//        guard let lhsDate = lhs.dateFromStartTime, let rhsDate = rhs.dateFromStartTime else {
-//            return false
-//        }
-//        return lhsDate < rhsDate
-//    }
-//    
-//    var dateFromStartTime: Date? {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "HH:mm" // Adjust this format to match your time string format
-//        return formatter.date(from: self.startTime)
-//    }
-//}
+
+#Preview {
+    ScheduleResultView()
+}
+
+
+
+

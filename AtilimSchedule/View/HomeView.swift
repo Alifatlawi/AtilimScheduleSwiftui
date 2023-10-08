@@ -28,7 +28,7 @@ struct HomeView: View {
                         case .house:
                             MainView()
                         case .calendar:
-                            ScheduleView()
+                            SelectCourseView()
                             Text("test")
                         case .gearshape:
                             SettingView()
@@ -55,11 +55,3 @@ struct HomeView: View {
 #Preview {
     HomeView()
 }
-
-
-
-//let sampleCourses = [
-//    Courses(startTime: "9:30", endTime: "10:20",title: "Computer programming", section: "3", location: "B1010", code: "CMPE113", bgColor: .green),
-//    // ... other courses ...
-//]
-//let sampleSchedule = ["Mon": sampleCourses, /* ... other days ... */]

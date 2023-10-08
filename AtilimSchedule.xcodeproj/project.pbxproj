@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143134022AD3421E0021E83A /* SelectCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143134012AD3421E0021E83A /* SelectCourseView.swift */; };
 		147DAD232ACF4F8C00D676F0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */; };
 		147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD242ACF4FCB00D676F0 /* HomeView.swift */; };
 		147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD272ACF500900D676F0 /* CustomeTabBar.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		143134012AD3421E0021E83A /* SelectCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCourseView.swift; sourceTree = "<group>"; };
 		147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		147DAD242ACF4FCB00D676F0 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		147DAD272ACF500900D676F0 /* CustomeTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeTabBar.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				147DAD472ACF7B9600D676F0 /* SettingView.swift */,
 				416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */,
 				416E702E2AD01309007FA2CA /* ScheduleResultView.swift */,
+				143134012AD3421E0021E83A /* SelectCourseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				147DAD3B2ACF5C0300D676F0 /* Database.xcdatamodeld in Sources */,
 				147DAD232ACF4F8C00D676F0 /* OnboardingView.swift in Sources */,
 				147DAD402ACF655B00D676F0 /* ScheduleView.swift in Sources */,
+				143134022AD3421E0021E83A /* SelectCourseView.swift in Sources */,
 				147DAD322ACF515900D676F0 /* TimeTableModel.swift in Sources */,
 				147DAD2C2ACF508B00D676F0 /* MainView.swift in Sources */,
 				147DAD422ACF6A6400D676F0 /* EditCoursesView.swift in Sources */,
