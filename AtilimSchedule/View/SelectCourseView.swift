@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectCourseView: View {
-    @State private var selectedView = 0
+    @State private var selectedView = 1
 
     var body: some View {
         NavigationView {

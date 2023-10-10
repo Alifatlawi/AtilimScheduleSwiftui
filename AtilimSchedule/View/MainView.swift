@@ -97,6 +97,7 @@ struct MainView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarHidden(true)
     }
 }
 

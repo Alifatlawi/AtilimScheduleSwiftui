@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+//import UserNotifications
 
 @main
 struct AtilimScheduleApp: App {
     @StateObject private var dataController = DataController()
-    
+    init() {
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
+                if granted {
+                    print("Notification authorization granted")
+                } else {
+                    print("Notification authorization denied")
+                }
+            }
+        }
     
     var body: some Scene {
         WindowGroup {

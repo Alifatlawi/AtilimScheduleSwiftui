@@ -148,10 +148,10 @@ class DataClassifier: ObservableObject{
                             endTimeString = dateFormatter.string(from: endTimeDate)
 //                            print("End Time String: \(endTimeString ?? "Nil")") // Debug print
                         } else {
-//                            print("Failed to calculate end time date") // Debug print for failure case
+                            print("Failed to calculate end time date") // Debug print for failure case
                         }
                     } else {
-//                        print("Failed to convert start time string to date") // Debug print for failure case
+                        print("Failed to convert start time string to date") // Debug print for failure case
                     }
                 }
 
@@ -191,27 +191,27 @@ class DataClassifier: ObservableObject{
         
     }
     
-    func printCourses(courses: [Course]) {
-        for course in courses {
-            print("Course ID: \(course.id)")
-            print("Course Name: \(course.name)")
-            print("Sections:")
-            for section in course.sections {
-                print("  Section ID: \(section.id)")
-                print("  Teacher: \(section.teacher.name)")
-                print("  Schedules:")
-                for schedule in section.schedules {
-                    print("    Day: \(schedule.day)")
-                    print("    Classroom: \(schedule.classroom)")
-                    print("    Period: \(schedule.period)")
-                    print("    Start Time: \(schedule.startTime)")
-                    print("    End Time: \(schedule.endTime)")
-                    print("    Duration: \(schedule.duration)")
-                }
-            }
-            print("--------------------")
-        }
-    }
+//    func printCourses(courses: [Course]) {
+//        for course in courses {
+//            print("Course ID: \(course.id)")
+//            print("Course Name: \(course.name)")
+//            print("Sections:")
+//            for section in course.sections {
+//                print("  Section ID: \(section.id)")
+//                print("  Teacher: \(section.teacher.name)")
+//                print("  Schedules:")
+//                for schedule in section.schedules {
+//                    print("    Day: \(schedule.day)")
+//                    print("    Classroom: \(schedule.classroom)")
+//                    print("    Period: \(schedule.period)")
+//                    print("    Start Time: \(schedule.startTime)")
+//                    print("    End Time: \(schedule.endTime)")
+//                    print("    Duration: \(schedule.duration)")
+//                }
+//            }
+//            print("--------------------")
+//        }
+//    }
     
     
 }

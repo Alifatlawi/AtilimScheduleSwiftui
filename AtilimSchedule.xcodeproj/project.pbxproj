@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		143134022AD3421E0021E83A /* SelectCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143134012AD3421E0021E83A /* SelectCourseView.swift */; };
+		143134122AD5C8C40021E83A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143134112AD5C8C40021E83A /* NotificationManager.swift */; };
 		147DAD232ACF4F8C00D676F0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */; };
 		147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD242ACF4FCB00D676F0 /* HomeView.swift */; };
 		147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD272ACF500900D676F0 /* CustomeTabBar.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		143134012AD3421E0021E83A /* SelectCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCourseView.swift; sourceTree = "<group>"; };
+		143134112AD5C8C40021E83A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		147DAD242ACF4FCB00D676F0 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		147DAD272ACF500900D676F0 /* CustomeTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeTabBar.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				147DAD3D2ACF5C6D00D676F0 /* DatabaseController.swift */,
+				143134112AD5C8C40021E83A /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */,
 				416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */,
 				416E701D2ACF4D1F007FA2CA /* AtilimScheduleApp.swift in Sources */,
+				143134122AD5C8C40021E83A /* NotificationManager.swift in Sources */,
 				147DAD2A2ACF500E00D676F0 /* HexagonView.swift in Sources */,
 				147DAD362ACF530800D676F0 /* CoursesView.swift in Sources */,
 			);

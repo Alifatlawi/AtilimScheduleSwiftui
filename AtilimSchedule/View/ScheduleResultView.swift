@@ -137,17 +137,6 @@ extension Schedule {
     }
 }
 
-//struct ScheduleResultView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        // Provide some dummy data for the preview
-//        let dummySchedule = Schedule(day: "Mon", classroom: "2017H", period: "4.", startTime: "09:30", endTime: "10:20", duration: "2 period(s)")
-//        let dummyTeacher = Teacher(name: "Güzin Türkmen")
-//        let dummySection = Sections(id: "01", teacher: dummyTeacher, schedules: [dummySchedule])
-//        let dummyCourse = Course(id: "CMPE251", name: "Discrete Computational Structures", sections: [dummySection])
-//        return ScheduleResultView(courses: [dummyCourse])
-//    }
-//}
-
 #Preview {
     ScheduleResultView()
 }

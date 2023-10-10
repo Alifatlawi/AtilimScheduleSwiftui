@@ -9,30 +9,58 @@ import SwiftUI
 
 struct LinkView: View {
     @State private var showMailView = false
+    @State private var showingActionSheet = false
+    
     var body: some View {
         NavigationView{
-            List {
-                profile
+            VStack {
+                List {
+                    profile
+                    
+                    links
+                    
+                    menu
+                    
+                }
+                .listStyle(.insetGrouped)
+                .navigationTitle("Links")
                 
-                links
-                
-                menu
+                Text("© May Basil")
+                    .font(.footnote)
+                    .padding()
+                    .padding(.bottom)
+                    .padding(.bottom)
+                    .padding(.bottom)
             }
-            .listStyle(.insetGrouped)
-            .navigationTitle("Links")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
     var menu: some View {
-            Section {
-                NavigationLink(destination: MailView(subject: "Message from App", toRecipients: ["ali.a.mardan@gmail.com"]), isActive: $showMailView) {
-                    Label("Send me a message", systemImage: "message" )
-                }
+        Section {
+            Button(action: {
+                self.showingActionSheet = true
+            }) {
+                Label("Send me a message", systemImage: "message")
             }
-            .listRowSeparatorTint(.blue)
-            .listRowSeparator(.hidden)
+            .actionSheet(isPresented: $showingActionSheet) {
+                ActionSheet(title: Text("Choose a method"), message: Text("Please choose your preferred contact method"), buttons: [
+                    .default(Text("Email")) {
+                        self.showMailView = true
+                    },
+                    .default(Text("Instagram"), action: {
+                        self.openInstagram(username: "xt4ki")
+                    }),
+                    .cancel()
+                ])
+            }
+            //            NavigationLink(destination: MailView(subject: "Message from App", toRecipients: ["ali.a.mardan@gmail.com"]), isActive: $showMailView) {
+            //                EmptyView()
+            //            }
         }
+        .listRowSeparatorTint(.blue)
+        .listRowSeparator(.hidden)
+    }
     
     var profile : some View {
         VStack(spacing: 8) {
@@ -46,7 +74,7 @@ struct LinkView: View {
                 .background(
                     HexagonView()
                         .offset(x:-50, y: -100)
-            )
+                )
                 .background(
                     BlobView()
                         .offset(x: 200, y: 0)
@@ -55,6 +83,8 @@ struct LinkView: View {
             Text("Made by Ali Al-Fatlawi")
                 .font(.title2)
                 .fontWeight(.semibold)
+            
+            
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -93,7 +123,18 @@ struct LinkView: View {
             .accentColor(.primary)
         }
     }
+    func openInstagram(username: String) {
+        let appURL = URL(string: "instagram://user?username=\(username)")!
+        let webURL = URL(string: "https://instagram.com/\(username)")!
+        if UIApplication.shared.canOpenURL(appURL) {
+            UIApplication.shared.open(appURL)
+        } else {
+            UIApplication.shared.open(webURL)
+        }
+    }
 }
+
+
 
 #Preview {
     LinkView()
@@ -106,25 +147,25 @@ import MessageUI
 struct MailView: UIViewControllerRepresentable {
     class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         var parent: MailView
-
+        
         init(parent: MailView) {
             self.parent = parent
         }
-
+        
         func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
-
+    
     @Environment(\.presentationMode) var presentationMode
-
+    
     var subject: String
     var toRecipients: [String]
-
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
+    
     func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
         vc.mailComposeDelegate = context.coordinator
@@ -132,7 +173,7 @@ struct MailView: UIViewControllerRepresentable {
         vc.setToRecipients(toRecipients)
         return vc
     }
-
+    
     func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {}
 }
 

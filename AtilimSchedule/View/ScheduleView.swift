@@ -3,8 +3,13 @@ import CoreData
 
 struct ScheduleView: View {
     @Environment(\.managedObjectContext) var moc
-    @State private var selectedDay: String = "Monday"  // Default to Monday
-    
+    @State private var selectedDay: String = {
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEEE"
+            return formatter.string(from: date)
+    }()  // Default to Monday
+   
     var body: some View {
 //        let screenSize = UIScreen.main.bounds.size
         VStack {
@@ -15,7 +20,7 @@ struct ScheduleView: View {
                 .padding(.top)
             
             DaySelectionView(selectedDay: $selectedDay)
-                .padding(.vertical)
+//                .padding(.vertical)
             
             HeaderRow()
                 .background(Color.gray.opacity(0.1))
@@ -45,6 +50,7 @@ struct DaySelectionView: View {
                 Text(String(day.prefix(3)))
                     .padding(.vertical, 10)
                     .padding(.horizontal, 15)
+                    .dynamicTypeSize(.xxLarge)
                     .background(self.selectedDay == day ? Color.blue : Color.gray.opacity(0.2))
                     .foregroundColor(self.selectedDay == day ? Color.white : Color.blue)
                     .cornerRadius(8)
@@ -92,30 +98,26 @@ struct CourseListView: View {
             guard let startTime1 = $0.startTime, let startTime2 = $1.startTime else {
                 return false
             }
-            let timeComponents1 = startTime1.split(separator: ":").compactMap { Int($0) }
-            let timeComponents2 = startTime2.split(separator: ":").compactMap { Int($0) }
-            
-            guard timeComponents1.count == 2, timeComponents2.count == 2 else {
-                return false
-            }
-            
-            if timeComponents1[0] != timeComponents2[0] {
-                return timeComponents1[0] < timeComponents2[0]
-            } else {
-                return timeComponents1[1] < timeComponents2[1]
-            }
+            return startTime1 < startTime2
         }
     }
     
+    let screenSize = UIScreen.main.bounds.size
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 10) {
-                ForEach(filteredSchedules, id: \.self) { schedule in  // Changed id to \.self for uniqueness
-                    if let course = schedule.section?.course, let section = schedule.section {
-                        CourseRowView(course: course, section: section, schedule: schedule)
+        GeometryReader { geometry in
+            VStack {
+                ScrollView {
+                    LazyVStack(spacing: 10) {
+                        ForEach(filteredSchedules, id: \.self) { schedule in  // Changed id to \.self for uniqueness
+                            if let course = schedule.section?.course, let section = schedule.section {
+                                CourseRowView(course: course, section: section, schedule: schedule)
+                            }
+                        }
                     }
+                    .padding(.bottom, screenSize.height * 0.07)
                 }
             }
+            .padding(.bottom)
         }
     }
 }

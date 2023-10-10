@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct HomeView: View {
-    @State private var selectedTab : Tab = .house
+    @State private var selectedTab : Tab = .calendar
     
     init() {
         UITabBar.appearance().isHidden = true
