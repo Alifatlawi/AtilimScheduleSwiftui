@@ -50,6 +50,7 @@ struct DaySelectionView: View {
                 Text(String(day.prefix(3)))
                     .padding(.vertical, 10)
                     .padding(.horizontal, 15)
+                    .font(.footnote)
                     .dynamicTypeSize(.xxLarge)
                     .background(self.selectedDay == day ? Color.blue : Color.gray.opacity(0.2))
                     .foregroundColor(self.selectedDay == day ? Color.white : Color.blue)

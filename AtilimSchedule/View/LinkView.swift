@@ -46,7 +46,7 @@ struct LinkView: View {
             .actionSheet(isPresented: $showingActionSheet) {
                 ActionSheet(title: Text("Choose a method"), message: Text("Please choose your preferred contact method"), buttons: [
                     .default(Text("Email")) {
-                        self.showMailView = true
+                        self.openEmailApp()
                     },
                     .default(Text("Instagram"), action: {
                         self.openInstagram(username: "xt4ki")
@@ -130,6 +130,12 @@ struct LinkView: View {
             UIApplication.shared.open(appURL)
         } else {
             UIApplication.shared.open(webURL)
+        }
+    }
+    
+    func openEmailApp() {
+        if let url = URL(string: "mailto:alawi_amer@yahoo.co.uk") {
+            UIApplication.shared.open(url)
         }
     }
 }
