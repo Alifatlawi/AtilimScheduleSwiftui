@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct AtilimScheduleApp: App {
     @StateObject private var dataController = DataController()
+    @StateObject private var sharedData = SharedData.shared
     init() {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
                 if granted {
@@ -25,6 +26,7 @@ struct AtilimScheduleApp: App {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
+                .environmentObject(sharedData)
         }
     }
 }

@@ -24,13 +24,6 @@ struct LinkView: View {
                 }
                 .listStyle(.insetGrouped)
                 .navigationTitle("Links")
-                
-                Text("© May Basil")
-                    .font(.footnote)
-                    .padding()
-                    .padding(.bottom)
-                    .padding(.bottom)
-                    .padding(.bottom)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

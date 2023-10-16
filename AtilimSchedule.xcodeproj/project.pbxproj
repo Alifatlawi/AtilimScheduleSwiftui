@@ -27,6 +27,10 @@
 		147DAD442ACF7AE400D676F0 /* AddExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD432ACF7AE400D676F0 /* AddExamView.swift */; };
 		147DAD462ACF7B2900D676F0 /* ExamDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD452ACF7B2900D676F0 /* ExamDatesView.swift */; };
 		147DAD482ACF7B9600D676F0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD472ACF7B9600D676F0 /* SettingView.swift */; };
+		4121CD292ADDD1CB0063DD9E /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4121CD282ADDD1CB0063DD9E /* BusinessModel.swift */; };
+		4121CD2B2ADDD1F10063DD9E /*  AvmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4121CD2A2ADDD1F10063DD9E /*  AvmModel.swift */; };
+		4121CD2D2ADDD2640063DD9E /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4121CD2C2ADDD2640063DD9E /* ShareData.swift */; };
+		4121CD2F2ADDD27F0063DD9E /* UniversityLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4121CD2E2ADDD27F0063DD9E /* UniversityLinks.swift */; };
 		416E701D2ACF4D1F007FA2CA /* AtilimScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E701C2ACF4D1F007FA2CA /* AtilimScheduleApp.swift */; };
 		416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E701E2ACF4D1F007FA2CA /* ContentView.swift */; };
 		416E70212ACF4D20007FA2CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416E70202ACF4D20007FA2CA /* Assets.xcassets */; };
@@ -57,6 +61,10 @@
 		147DAD432ACF7AE400D676F0 /* AddExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExamView.swift; sourceTree = "<group>"; };
 		147DAD452ACF7B2900D676F0 /* ExamDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDatesView.swift; sourceTree = "<group>"; };
 		147DAD472ACF7B9600D676F0 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		4121CD282ADDD1CB0063DD9E /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
+		4121CD2A2ADDD1F10063DD9E /*  AvmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " AvmModel.swift"; sourceTree = "<group>"; };
+		4121CD2C2ADDD2640063DD9E /* ShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
+		4121CD2E2ADDD27F0063DD9E /* UniversityLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityLinks.swift; sourceTree = "<group>"; };
 		416E70192ACF4D1F007FA2CA /* AtilimSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtilimSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		416E701C2ACF4D1F007FA2CA /* AtilimScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtilimScheduleApp.swift; sourceTree = "<group>"; };
 		416E701E2ACF4D1F007FA2CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,6 +91,8 @@
 			children = (
 				147DAD2F2ACF515200D676F0 /* subject.swift */,
 				147DAD312ACF515900D676F0 /* TimeTableModel.swift */,
+				4121CD282ADDD1CB0063DD9E /* BusinessModel.swift */,
+				4121CD2A2ADDD1F10063DD9E /*  AvmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +141,8 @@
 			children = (
 				147DAD3D2ACF5C6D00D676F0 /* DatabaseController.swift */,
 				143134112AD5C8C40021E83A /* NotificationManager.swift */,
+				4121CD2C2ADDD2640063DD9E /* ShareData.swift */,
+				4121CD2E2ADDD27F0063DD9E /* UniversityLinks.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -257,10 +269,13 @@
 				147DAD422ACF6A6400D676F0 /* EditCoursesView.swift in Sources */,
 				147DAD302ACF515200D676F0 /* subject.swift in Sources */,
 				147DAD3E2ACF5C6D00D676F0 /* DatabaseController.swift in Sources */,
+				4121CD2D2ADDD2640063DD9E /* ShareData.swift in Sources */,
 				416E702F2AD01309007FA2CA /* ScheduleResultView.swift in Sources */,
 				416E702D2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift in Sources */,
+				4121CD2B2ADDD1F10063DD9E /*  AvmModel.swift in Sources */,
 				147DAD342ACF51E700D676F0 /* Data.swift in Sources */,
 				416E702B2AD00D8F007FA2CA /* MakeScheduleView.swift in Sources */,
+				4121CD292ADDD1CB0063DD9E /* BusinessModel.swift in Sources */,
 				147DAD442ACF7AE400D676F0 /* AddExamView.swift in Sources */,
 				147DAD2E2ACF50C500D676F0 /* LinkView.swift in Sources */,
 				147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */,
@@ -268,6 +283,7 @@
 				147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */,
 				416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */,
 				416E701D2ACF4D1F007FA2CA /* AtilimScheduleApp.swift in Sources */,
+				4121CD2F2ADDD27F0063DD9E /* UniversityLinks.swift in Sources */,
 				143134122AD5C8C40021E83A /* NotificationManager.swift in Sources */,
 				147DAD2A2ACF500E00D676F0 /* HexagonView.swift in Sources */,
 				147DAD362ACF530800D676F0 /* CoursesView.swift in Sources */,
@@ -418,7 +434,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliamer.atilim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -451,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aliamer.atilim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
