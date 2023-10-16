@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		143134022AD3421E0021E83A /* SelectCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143134012AD3421E0021E83A /* SelectCourseView.swift */; };
 		143134122AD5C8C40021E83A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143134112AD5C8C40021E83A /* NotificationManager.swift */; };
+		146826942ADB152A00DA3072 /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146826932ADB152A00DA3072 /* ShareData.swift */; };
+		146826962ADB15E300DA3072 /* UniversityLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146826952ADB15E300DA3072 /* UniversityLinks.swift */; };
+		146826982ADBC4E800DA3072 /* BusinessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146826972ADBC4E800DA3072 /* BusinessModel.swift */; };
+		1468269C2ADBEB6800DA3072 /* AvmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1468269B2ADBEB6800DA3072 /* AvmModel.swift */; };
 		147DAD232ACF4F8C00D676F0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */; };
 		147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD242ACF4FCB00D676F0 /* HomeView.swift */; };
 		147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD272ACF500900D676F0 /* CustomeTabBar.swift */; };
@@ -29,7 +33,6 @@
 		147DAD482ACF7B9600D676F0 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147DAD472ACF7B9600D676F0 /* SettingView.swift */; };
 		416E701D2ACF4D1F007FA2CA /* AtilimScheduleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E701C2ACF4D1F007FA2CA /* AtilimScheduleApp.swift */; };
 		416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E701E2ACF4D1F007FA2CA /* ContentView.swift */; };
-		416E70212ACF4D20007FA2CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416E70202ACF4D20007FA2CA /* Assets.xcassets */; };
 		416E70242ACF4D20007FA2CA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416E70232ACF4D20007FA2CA /* Preview Assets.xcassets */; };
 		416E702B2AD00D8F007FA2CA /* MakeScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */; };
 		416E702D2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416E702C2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift */; };
@@ -39,6 +42,10 @@
 /* Begin PBXFileReference section */
 		143134012AD3421E0021E83A /* SelectCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCourseView.swift; sourceTree = "<group>"; };
 		143134112AD5C8C40021E83A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		146826932ADB152A00DA3072 /* ShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
+		146826952ADB15E300DA3072 /* UniversityLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityLinks.swift; sourceTree = "<group>"; };
+		146826972ADBC4E800DA3072 /* BusinessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessModel.swift; sourceTree = "<group>"; };
+		1468269B2ADBEB6800DA3072 /* AvmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvmModel.swift; sourceTree = "<group>"; };
 		147DAD222ACF4F8C00D676F0 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		147DAD242ACF4FCB00D676F0 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		147DAD272ACF500900D676F0 /* CustomeTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomeTabBar.swift; sourceTree = "<group>"; };
@@ -60,7 +67,6 @@
 		416E70192ACF4D1F007FA2CA /* AtilimSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtilimSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		416E701C2ACF4D1F007FA2CA /* AtilimScheduleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtilimScheduleApp.swift; sourceTree = "<group>"; };
 		416E701E2ACF4D1F007FA2CA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		416E70202ACF4D20007FA2CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		416E70232ACF4D20007FA2CA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		416E702A2AD00D8F007FA2CA /* MakeScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeScheduleView.swift; sourceTree = "<group>"; };
 		416E702C2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGeneratorViewModel.swift; sourceTree = "<group>"; };
@@ -83,6 +89,8 @@
 			children = (
 				147DAD2F2ACF515200D676F0 /* subject.swift */,
 				147DAD312ACF515900D676F0 /* TimeTableModel.swift */,
+				146826972ADBC4E800DA3072 /* BusinessModel.swift */,
+				1468269B2ADBEB6800DA3072 /* AvmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +139,8 @@
 			children = (
 				147DAD3D2ACF5C6D00D676F0 /* DatabaseController.swift */,
 				143134112AD5C8C40021E83A /* NotificationManager.swift */,
+				146826932ADB152A00DA3072 /* ShareData.swift */,
+				146826952ADB15E300DA3072 /* UniversityLinks.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -161,7 +171,6 @@
 				147DAD1F2ACF4F1B00D676F0 /* Model */,
 				416E701C2ACF4D1F007FA2CA /* AtilimScheduleApp.swift */,
 				416E701E2ACF4D1F007FA2CA /* ContentView.swift */,
-				416E70202ACF4D20007FA2CA /* Assets.xcassets */,
 				416E70222ACF4D20007FA2CA /* Preview Content */,
 				147DAD392ACF5C0300D676F0 /* Database.xcdatamodeld */,
 			);
@@ -235,7 +244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				416E70242ACF4D20007FA2CA /* Preview Assets.xcassets in Resources */,
-				416E70212ACF4D20007FA2CA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1468269C2ADBEB6800DA3072 /* AvmModel.swift in Sources */,
 				147DAD462ACF7B2900D676F0 /* ExamDatesView.swift in Sources */,
 				147DAD482ACF7B9600D676F0 /* SettingView.swift in Sources */,
 				147DAD3B2ACF5C0300D676F0 /* Database.xcdatamodeld in Sources */,
@@ -254,16 +263,19 @@
 				143134022AD3421E0021E83A /* SelectCourseView.swift in Sources */,
 				147DAD322ACF515900D676F0 /* TimeTableModel.swift in Sources */,
 				147DAD2C2ACF508B00D676F0 /* MainView.swift in Sources */,
+				146826982ADBC4E800DA3072 /* BusinessModel.swift in Sources */,
 				147DAD422ACF6A6400D676F0 /* EditCoursesView.swift in Sources */,
 				147DAD302ACF515200D676F0 /* subject.swift in Sources */,
 				147DAD3E2ACF5C6D00D676F0 /* DatabaseController.swift in Sources */,
 				416E702F2AD01309007FA2CA /* ScheduleResultView.swift in Sources */,
 				416E702D2AD01042007FA2CA /* ScheduleGeneratorViewModel.swift in Sources */,
 				147DAD342ACF51E700D676F0 /* Data.swift in Sources */,
+				146826942ADB152A00DA3072 /* ShareData.swift in Sources */,
 				416E702B2AD00D8F007FA2CA /* MakeScheduleView.swift in Sources */,
 				147DAD442ACF7AE400D676F0 /* AddExamView.swift in Sources */,
 				147DAD2E2ACF50C500D676F0 /* LinkView.swift in Sources */,
 				147DAD282ACF500900D676F0 /* CustomeTabBar.swift in Sources */,
+				146826962ADB15E300DA3072 /* UniversityLinks.swift in Sources */,
 				147DAD382ACF57B800D676F0 /* CourseDetailView.swift in Sources */,
 				147DAD252ACF4FCB00D676F0 /* HomeView.swift in Sources */,
 				416E701F2ACF4D1F007FA2CA /* ContentView.swift in Sources */,
